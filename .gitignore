@@ -1,0 +1,13 @@
+
+# Terraform state files and backups
+*.tfstate
+*.tfstate.*
+.terraform/
+*.tfvars
+*.tfvars.json
+.terraform.lock.hcl
+
+# IDE and OS files
+.DS_Store
+.vscode/
+__pycache__/
