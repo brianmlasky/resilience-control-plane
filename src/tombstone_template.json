@@ -1,0 +1,7 @@
+{
+  "tombstone_version": "1.0",
+  "reason": "CRITICAL_SIDECAR_FAILURE",
+  "agent_last_state": "IN_FLIGHT_SETTLEMENT",
+  "in_flight_tool_calls": ["CLEAR_LEDGER_ENTRY_001"],
+  "recovery_action": "TRIGGER_RECONCILIATION_WORKFLOW"
+}

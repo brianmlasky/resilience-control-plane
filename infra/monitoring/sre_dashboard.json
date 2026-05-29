@@ -1,0 +1,8 @@
+{
+  "title": "RCP Operations Dashboard",
+  "panels": [
+    { "type": "graph", "metric": "rcp.policy.eval.latency_ms", "threshold": 2.0 },
+    { "type": "gauge", "metric": "rcp.circuit.breaker.state", "labels": ["CLOSED", "OPEN"] },
+    { "type": "counter", "metric": "rcp.tool_execution.denied_total" }
+  ]
+}
