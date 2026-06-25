@@ -1,0 +1,1 @@
+{"resources": [{"name": "\"my-insecure-bucket\"", "acl": "\"public-read\"", "__is_block__": true}, {"name": "\"high-cost-agent\"", "max_tokens": 10000, "__is_block__": true}]}

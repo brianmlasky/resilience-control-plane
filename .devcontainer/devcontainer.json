@@ -1,0 +1,5 @@
+{
+    "name": "Resilience Control Plane",
+    "image": "mcr.microsoft.com/devcontainers/python:3.12",
+    "postCreateCommand": "pip install -r requirements.txt && curl -L -o opa https://openpolicyagent.org/downloads/latest/opa_linux_amd64 && chmod +x opa && sudo mv opa /usr/local/bin/"
+}

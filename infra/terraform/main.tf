@@ -1,9 +1,20 @@
-# 1. The Workload Identity Pool
+# --- Governance Test Resources (To be blocked) ---
+resource "example_bucket" "test_bucket" {
+  name = "insecure-governance-bucket"
+  acl  = "public-read"
+}
+
+resource "agent_config" "test_agent" {
+  name       = "high-risk-agent"
+  max_tokens = 9999
+}
+
+# --- 1. The Workload Identity Pool ---
 resource "google_iam_workload_identity_pool" "github_pool" {
   workload_identity_pool_id = "resilience-pool"
 }
 
-# 2. The Provider (The Trust Anchor)
+# --- 2. The Provider (The Trust Anchor) ---
 resource "google_iam_workload_identity_pool_provider" "github_provider" {
   workload_identity_pool_id          = google_iam_workload_identity_pool.github_pool.workload_identity_pool_id
   workload_identity_pool_provider_id = "github-provider"
@@ -17,7 +28,7 @@ resource "google_iam_workload_identity_pool_provider" "github_provider" {
   attribute_condition = "assertion.repository == \"${var.github_repo_owner}/${var.github_repo_name}\""
 }
 
-# 3. The Separated Service Accounts
+# --- 3. The Separated Service Accounts ---
 resource "google_service_account" "rcp_sidecar" {
   account_id   = "rcp-sidecar-sa"
   display_name = "Governance Sidecar Identity"
@@ -28,7 +39,7 @@ resource "google_service_account" "agent_worker" {
   display_name = "Settlement Agent Worker Identity"
 }
 
-# 4. IAM Binding: Allow the GitHub Repo to impersonate the Sidecar
+# --- 4. IAM Binding: Allow the GitHub Repo to impersonate the Sidecar ---
 resource "google_service_account_iam_member" "workload_identity_binding" {
   service_account_id = google_service_account.rcp_sidecar.name
   role               = "roles/iam.workloadIdentityUser"
